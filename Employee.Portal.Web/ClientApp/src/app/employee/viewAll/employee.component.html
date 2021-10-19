@@ -1,0 +1,40 @@
+<h1>Employees</h1>
+<hr />
+<button class="btn btn-primary" [routerLink]="['/addEmployee']">Add New</button>
+<hr />
+
+<div *ngIf="data.length==0">No Data to show </div>
+
+<div *ngFor="let item of data">
+  <h4>Department : <b>{{item.department}}</b></h4>
+  <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th class="th-sm">
+          First Name
+        </th>
+        <th class="th-sm">
+          Last Name
+        </th>
+        <th class="th-sm">
+          Phone
+        </th>
+        <th class="th-sm">
+          Birth Date
+        </th>
+        <th class="th-sm">
+          Address
+        </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of item.employees">
+        <td>{{emp.firstName}}</td>
+        <td>{{emp.lastName}}</td>
+        <td>{{emp.phone}}</td>
+        <td>{{emp.birthDate}}</td>
+        <td>{{emp.address}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

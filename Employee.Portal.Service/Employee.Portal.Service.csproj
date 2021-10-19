@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Employee.Portal.CoreLib\Employee.Portal.CoreLib.csproj" />
+    <ProjectReference Include="..\Employee.Portal.Repo\Employee.Portal.Repo.csproj" />
+  </ItemGroup>
+
+</Project>
