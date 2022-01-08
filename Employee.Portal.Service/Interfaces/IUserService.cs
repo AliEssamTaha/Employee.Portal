@@ -9,6 +9,5 @@ namespace Employee.Portal.Service.Interfaces
     {
         Task<UserDto> GetUser(string userName, string password);
         Task RegisterUser(RegisterRequest registerRequest);
-        Task<User> GetUserByRefreshToken(string token);
     }
 }

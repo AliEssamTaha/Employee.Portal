@@ -5,18 +5,19 @@ using Employee.Portal.Service.Dto;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 
 namespace Employee.Portal.Service.TokenGenerators
 {
     public class AccessTokenGenerator : IAccessTokenGenerator
     {
         private readonly AuthenticationConfiguration _configuration;
-        private readonly ITokenGenerator _tokenGenerator;
 
-        public AccessTokenGenerator(AuthenticationConfiguration configuration, ITokenGenerator tokenGenerator)
+        public AccessTokenGenerator(AuthenticationConfiguration configuration)
         {
             _configuration = configuration;
-            _tokenGenerator = tokenGenerator;
         }
 
         public AccessToken GenerateToken(UserDto user)
@@ -29,7 +30,7 @@ namespace Employee.Portal.Service.TokenGenerators
             };
 
             DateTime expirationTime = DateTime.UtcNow.AddMinutes(_configuration.AccessTokenExpirationMinutes);
-            string token = _tokenGenerator.GenerateToken(
+            string token = GenerateToken(
                 _configuration.AccessTokenSecret,
                 _configuration.Issuer,
                 _configuration.Audience,
@@ -41,6 +42,23 @@ namespace Employee.Portal.Service.TokenGenerators
                 Value = token,
                 ExpirationTime = expirationTime
             };
+        }
+
+        public string GenerateToken(string secretKey, string issuer, string audience, DateTime utcExpirationTime,
+            IEnumerable<Claim> claims = null)
+        {
+            SecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            JwtSecurityToken token = new JwtSecurityToken(
+                issuer,
+                audience,
+                claims,
+                DateTime.UtcNow,
+                utcExpirationTime,
+                credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

@@ -16,26 +16,24 @@ export class AppService {
     return this.httpClient.post<any>(`${this.apiServer}/api/Authentication/login/`, JSON.stringify(obj));
   }
 
-  signout(): Observable<any> {
-    return this.httpClient.delete<any>(`${this.apiServer}/api/Authentication/logout`);
-  }
-
   register(obj): Observable<any> {
     return this.httpClient.post<any>(`${this.apiServer}/api/Authentication/Register`, JSON.stringify(obj));
   }
 
-  getDepartments(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiServer}/api/Department`);
-  }
-
-
-  addDepartment(obj): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiServer}/api/Department`,JSON.stringify(obj));
-  }
-
-
   addEmployee(obj): Observable<any> {
     return this.httpClient.post<any>(`${this.apiServer}/api/Employee`, JSON.stringify(obj));
+  }
+
+  updateEmployee(obj): Observable<any> {
+    return this.httpClient.put<any>(`${this.apiServer}/api/Employee`, JSON.stringify(obj));
+  }
+
+  deleteEmployee(id): Observable<any> {
+    return this.httpClient.delete<any>(`${this.apiServer}/api/Employee/${id}`);
+  }
+
+  getEmployeesById(id): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiServer}/api/Employee/${id}`);
   }
 
   getEmployees(): Observable<any> {

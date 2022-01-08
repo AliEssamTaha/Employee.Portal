@@ -7,8 +7,6 @@ namespace Employee.Portal.Service.Interfaces
 {
     public interface IAuthenticationService
     {
-        Task<AuthenticatedUserResponse> Authenticate(UserDto user);
-        Task Logout(Guid? userId);
-        Task<AuthenticatedUserResponse> RefreshUserToken(string token);
+        Task<AuthenticatedUserResponse> GenerateToken(UserDto user);
     }
 }

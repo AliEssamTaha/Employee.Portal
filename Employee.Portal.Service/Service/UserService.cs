@@ -72,11 +72,5 @@ namespace Employee.Portal.Service
             }
         }
 
-        public async Task<User> GetUserByRefreshToken(string token)
-        {
-            var user = await _userRepository.Users.Include(o => o.RefreshToken).LastOrDefaultAsync(o => o.RefreshToken.Token == token);
-
-            return user;
-        }
     }
 }

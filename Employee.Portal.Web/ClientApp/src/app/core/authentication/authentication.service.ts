@@ -23,6 +23,7 @@ export class AuthService {
   }
 }
 export interface TokenModel {
+  userName: string;
   accessToken: string,
   refreshToken: string,
   accessTokenExpirationTime : number

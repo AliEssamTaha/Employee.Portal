@@ -11,15 +11,13 @@ import { AppService } from '../services/app.service';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor(private authService: AuthService, private appService: AppService, private router : Router) {
+  constructor(private authService: AuthService, private appService: AppService, private router: Router) {
 
   }
 
   logout() {
-    this.appService.signout().subscribe(() => {
-      this.authService.RemoveToken();
-      this.router.navigate(['login']);
-    });
+    this.authService.RemoveToken();
+    this.router.navigate(['login']);
   }
 
   collapse() {

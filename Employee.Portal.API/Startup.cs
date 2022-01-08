@@ -63,10 +63,7 @@ namespace Employee.Portal.API
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IAuthenticationService),typeof(AuthenticationService));
             services.AddScoped(typeof(IAccessTokenGenerator),typeof(AccessTokenGenerator));
-            services.AddScoped(typeof(IRefreshTokenGenerator),typeof(RefreshTokenGenerator));
-            services.AddScoped(typeof(ITokenGenerator),typeof(TokenGenerator));
             services.AddScoped(typeof(IUserService),typeof(UserService));
-            services.AddScoped(typeof(IDepartmentService),typeof(DepartmentService));
             services.AddScoped(typeof(IEmployeeService),typeof(EmployeeService));
 
             services.AddDbContext<ApplicationDbContext>(options =>

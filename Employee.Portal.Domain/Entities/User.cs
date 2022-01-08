@@ -5,6 +5,6 @@ namespace Employee.Portal.Domain.Entities
 {
     public class User : IdentityUser<Guid>
     {
-        public virtual RefreshToken RefreshToken { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

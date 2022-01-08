@@ -5,6 +5,7 @@ namespace Employee.Portal.CoreLib.Requests
 {
     public class EmployeeRequest
     {
+        public int? Id { get; set; }
         [Required] 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -12,8 +13,6 @@ namespace Employee.Portal.CoreLib.Requests
         public string Address { get; set; }
         [Required]
         public DateTime BirthDate { get; set; }
-        [Required]
-        public int DepartmentId { get; set; }
 
     }
 }

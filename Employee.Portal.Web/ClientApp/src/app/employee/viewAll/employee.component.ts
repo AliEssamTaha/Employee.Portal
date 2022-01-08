@@ -15,9 +15,22 @@ export class EmployeeComponent {
 
   getEmployees() {
     this.appService.getEmployees().subscribe((data) => {
-      debugger
       this.data = data;
     })
+  }
+
+  delete(id) {
+    if (confirm(`Are you sure you want remove this employee ?`)) {
+      this.appService.deleteEmployee(id).subscribe((result) => {
+        if (result) {
+          this.getEmployees();
+          alert("Successfully Deleted."); 
+        }
+        else {
+          alert("Error occcured while saving , please try again!!");
+        }
+      });
+    }
   }
    
 
